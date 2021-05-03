@@ -1,0 +1,71 @@
+<div class=" content" style="padding: 5rem;">
+    <div class=" row">
+      <div class=" col-md-6 col-xs-12">
+        <div class=" card">
+          <div class=" card-header" style="text-align: center;"><h1 class=" title">Login</h1></div>
+          <div class=" card-body">
+            <ngb-alert *ngIf="errorMessage == 1" [type]="'success'" [dismissible]="false">
+                <span> Veuillez patienter ... </span>
+              </ngb-alert>
+              
+          <ngb-alert [type]="'danger'" *ngIf="errorMessage == 2" [dismissible]="false">
+            <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close" (click)="errorMessage = 0">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
+            <span>
+              <b> Error - </b>Login ou password incorrect !!
+            </span>
+          </ngb-alert>
+            <form>
+
+              <div class=" row" style="margin: 2rem;">
+                <div class=" col-md-12 ">
+                  <div class=" form-group">
+                    <label> Accés Partenaires </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Login"
+                      type="text"
+                      [(ngModel)]="this.username"
+                      [ngModelOptions]="{standalone: true}"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-12 ">
+                  <div class=" form-group">
+                    <label> Password </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Mot de passe"
+                      type="password"
+                      [(ngModel)]="this.password"
+                      [ngModelOptions]="{standalone: true}"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class=" card-footer" style="text-align: center;">
+                <button class=" btn btn-fill btn-danger" (click)="login()">Valider</button>
+              </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+      <div class=" col-md-6 col-xs-12" >
+        <div class=" card card-user"style="background-image: url('../../assets/img/loginBBS.jpg');min-height: 94%;">
+          <div class=" card-body">
+            
+
+          </div>
+          <div class=" card-footer">
+            <div class=" button-container">
+           
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

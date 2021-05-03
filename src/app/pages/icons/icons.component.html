@@ -1,0 +1,159 @@
+
+<div class=" content">
+  <div class=" row">
+    <div class=" col-12">
+      <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">NBRE OPERATION</i>
+                      </div>
+                      <p class="card-category"></p>
+                      <h3 class="card-title">{{nbrOp}}
+                          <small>Opérations</small>
+                      </h3>
+                  </div>
+                  <!--<div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons text-danger">warning</i>
+                          <a href="javascript:void(0)">Get More Space...</a>
+                      </div>
+                  </div>-->
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">Votre Solde</i>
+                      </div>
+                      <p class="card-category"></p>
+                      <h3 class="card-title">{{currencyFormat(solde)}}
+                          <small>Fcfa</small>
+                      </h3>
+                  </div>
+                 <!-- <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons text-danger">warning</i>
+                          <a href="javascript:void(0)">Get More Space...</a>
+                      </div>
+                  </div>-->
+              </div>
+          </div>
+          
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">Commissions</i>
+                    </div>
+                    <p class="card-category"></p>
+                    <h3 class="card-title">{{currencyFormat(commission)}}
+                        <small>Fcfa</small>
+                    </h3>
+                </div>
+               <!-- <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons text-danger">warning</i>
+                        <a href="javascript:void(0)">Get More Space...</a>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class=" form-group" style="margin-top: 1.5rem;">
+            <div class="col-md-12"  style="text-align: center;">
+              <button  class="btn btn-primary" [disabled]="listOperations.length == 0" (click)="download()"  >Exportation en excel</button>
+            </div>
+          </div>
+        </div>
+        </div>
+    <div class=" row">
+
+      <div class=" col-md-12">
+
+        <div class=" card card-plain">
+          <div class=" card-header">
+            
+
+          </div>
+          <div class=" card-body">
+            <form style="min-width: 100%;margin-top: -3.5rem;">
+
+                
+              <div class=" row"  style="margin-top: 0rem;margin-bottom: 0rem;">
+                <div class=" col-md-5 ">
+                  <div class=" form-group">
+                    <label style="font-size: 1rem;"> Date debut </label>
+                    <input
+                      class=" form-control"
+                      type="date"
+                      [(ngModel)]="this.dateDebut"
+                      [ngModelOptions]="{standalone: true}"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-5" >
+                  <div class=" form-group">
+                    <label style="font-size: 1rem;"> Date fin </label>
+                    <input
+                      class=" form-control"
+                      type="date"
+                      [(ngModel)]="this.dateFin"
+                      [ngModelOptions]="{standalone: true}"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-2" >
+                  <div class=" form-group" style="margin-top: 1.5rem;">
+                    <div class="col-md-12"  style="text-align: center;">
+                      <button  class=" btn btn-fill btn-success" [disabled]="!dateDebut || !dateFin " (click)="recherche()"  >Valider</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </form>
+              </div>
+            <div class=" table-responsive">
+              <table class=" table tablesorter" id="">
+                <thead class=" text-primary" style="background-color: #007bff!important;color: white !important;">
+                  <tr style="background-color: #007bff!important;color: white !important;">
+                    <th style="background-color: #007bff!important;color: white !important;" >Date</th>
+                    <th style="background-color: #007bff!important;color: white !important;" >PRENOM</th>
+                    <th style="background-color: #007bff!important;color: white !important;" >NOM</th>
+                    <th style="background-color: #007bff!important;color: white !important;" >TELEPHONE</th>
+                    <th style="background-color: #007bff!important;color: white !important;" >N° DECODEUR</th>
+                    <th style="background-color: #007bff!important;color: white !important;" >N° CARTE</th>
+                    <th style="background-color: #007bff!important;color: white !important;" >FORMULE</th>
+                    <th style="background-color: #007bff!important;color: white !important;" >NBR MOIS</th>
+                    <th style="background-color: #007bff!important;color: white !important;" >MONTANT</th>
+                    <th style="background-color: #007bff!important;color: white !important;" >N° ABONNE</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr class="ligne" *ngFor="let p of listOperations" >
+                    <td>{{p.date_operation}}</td>
+                    <td>{{getInfo(p.infosOperation,'prenom')}}</td>
+                    <td>{{getInfo(p.infosOperation,'nomclient')}}</td>
+                    <td>{{getInfo(p.infosOperation,'tel')}}</td>
+                    <td>{{getInfo(p.infosOperation,'numDec')}}</td>
+                    <td>{{getInfo(p.infosOperation,'carte')}}</td>
+                    <td >{{getInfo(p.infosOperation,'formule')}}</td>
+                    <td >{{getInfo(p.infosOperation,'nbreMois')}}</td>
+                    <td >{{getInfo(p.infosOperation,'montant')}}</td>
+                    <td >{{getInfo(p.infosOperation,'numAbo')}}</td>
+                  </tr>
+                 
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>

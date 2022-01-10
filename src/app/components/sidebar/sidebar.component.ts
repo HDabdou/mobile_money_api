@@ -22,28 +22,30 @@ export const ROUTES: RouteInfo[] = [
     icon: "icon-atom",
     class: ""
   },
- /* {
-    path: "/maps",
-    title: "Maps",
-    rtlTitle: "خرائط",
-    icon: "icon-pin",
-    class: "" },
   {
-    path: "/notifications",
-    title: "Notifications",
+    path: "/maps",
+    title: "Mobile Money",
+    rtlTitle: "خرائط",
+    icon: "icon-wallet-43",
+    class: "" 
+  },
+  {
+    path: "/typography",
+    title: "Bulk Payment WAVE",
     rtlTitle: "إخطارات",
-    icon: "icon-bell-55",
+    icon: "icon-wallet-43",
     class: ""
   },
 
   {
-    path: "/user",
-    title: "User Profile",
+    path: "/tables",
+    title: "Marchand WAVE",
     rtlTitle: "ملف تعريفي للمستخدم",
-    icon: "icon-single-02",
+    icon: "icon-wallet-43",
     class: ""
   },
-  {
+
+/*  {
     path: "/tables",
     title: "Table List",
     rtlTitle: "قائمة الجدول",

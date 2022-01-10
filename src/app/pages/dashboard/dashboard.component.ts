@@ -3,6 +3,7 @@ import Chart from 'chart.js';
 import { AdminService } from 'src/app/services/admin.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: "app-dashboard",
@@ -18,6 +19,7 @@ export class DashboardComponent implements OnInit {
   solde;
   commission
   listOperations:any = [];
+  p: number = 1;
   constructor(private _serviceAdmin: AdminService,private router:Router) {}
   currencyFormat(somme) : String{
     return Number(somme).toLocaleString() ;
@@ -25,16 +27,39 @@ export class DashboardComponent implements OnInit {
   recherche(){
     this.listOperations = []
    this._serviceAdmin.historique({date_debut:this.dateDebut,date_fin:this.dateFin}).then(res=>{
-    console.log(JSON.parse(res))
+  //  console.log(JSON.parse(res))
       let rep = JSON.parse(res);
       if(rep['errorCode'] == 1){
         this.listOperations = JSON.parse(rep['data'])
         this.nbrOp = this.listOperations.length;
-        console.log(this.listOperations)
+      //  console.log(this.listOperations)
       }else{
         alert(rep['message']);
       }
     })
+  }
+  handleForExcell(arg){
+    let b = [];
+    for(let i of arg){
+        b.push({date:i.dateoperation,id_transaction:i.id,nomservice:i.nomservice,traitement:i.libelleoperation,numero:i.telephone,montant:this.currencyFormat(i.montant)})
+    }
+    return b;
+}
+  exportToExcel(): void {
+    // Here is simple example how to export to excel by https://www.npmjs.com/package/xlsx
+    try {
+      /* generate worksheet */
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.listOperations);
+    
+      /* generate workbook and add the worksheet */
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    
+      /* save to file */
+      XLSX.writeFile(wb, 'rapport du '+new Date().toJSON()+'.xlsx');
+    } catch (err) {
+      console.error('export error', err);
+    }
   }
   ConvertToCSV(objArray) {
     var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
@@ -96,7 +121,7 @@ errorMessage:number = 0
           }
         );
       }
-      console.log(liste);
+    //  console.log(liste);
       //console.log(this.ConvertToCSV(liste));
       var csvData = this.ConvertToCSV(liste);
       var a = document.createElement("a");
@@ -107,7 +132,7 @@ errorMessage:number = 0
       a.href = url;
       a.download = 'report_'+(new Date().toLocaleString())+'.csv';/* your file name*/
       a.click();
-      console.log(csvData);
+    //  console.log(csvData);
       this.errorMessage = 2
       return 'success';
     
@@ -128,20 +153,19 @@ errorMessage:number = 0
     this.dateDebut = ((new Date(d)).toJSON()).split("T",2)[0];
     this.dateFin = ((new Date()).toJSON()).split("T",2)[0];
     this.listOperations = []
-    console.log(JSON.parse(localStorage.getItem("currentuser")))
    this._serviceAdmin.historique({date_debut:this.dateDebut,date_fin:this.dateFin}).then(res=>{
-    console.log(JSON.parse(res))
+  //  console.log(JSON.parse(res))
     let rep = JSON.parse(res);
     if(rep['errorCode'] == 1){
       this.listOperations = JSON.parse(rep['data'])
       this.nbrOp = this.listOperations.length;
-      console.log(this.listOperations)
+    //  console.log(this.listOperations)
     }else{
       alert(rep['message']);
     }
     })
     this._serviceAdmin.getSolde().then(res=>{
-      console.log(res)
+    //  console.log(res)
       if(res['errorCode'] == 1){
         this.solde = res['solde']
         this.commission = res['commissions']

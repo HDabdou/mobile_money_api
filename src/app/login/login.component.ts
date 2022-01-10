@@ -56,7 +56,8 @@ export class LoginComponent implements OnInit {
         //console.log(resp)
       if(res['status'] != false){
         //console.log('good')
-        localStorage.setItem('currentuser',JSON.stringify(res['message']));
+        localStorage.setItem('currentuser',JSON.stringify(res));
+        console.log(res.data.message.iduser)
         this.router.navigate(['/dashboard'])
       }else{
         this.errorMessage = 2;

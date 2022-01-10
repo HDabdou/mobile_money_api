@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AdminService } from 'src/app/services/admin.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: "app-icons",
@@ -13,17 +14,59 @@ export class IconsComponent implements OnInit {
    solde;
    commission
    listOperations:any = [];
+   p: number = 1;
    constructor(private _serviceAdmin: AdminService) {}
+   nomHandle(arg){
+     return arg.split("BGD")[1]
+   }
+   formuleHandle(arg){
+     return arg.replace("u00e0","à")
+   }
+   handleForExcell(arg){
+   
+    let b = [];
+    for(let i of arg){
+        b.push({date:i.date_operation,
+          prenom:this.getInfo(i.infosOperation,'prenom'),
+          nom:this.getInfo(i.infosOperation,'nomclient').split("BGD")[1],
+          telephone:this.getInfo(i.infosOperation,'tel'),
+          numDecodeur:this.getInfo(i.infosOperation,'numDec'),
+          carte:this.getInfo(i.infosOperation,'carte'),
+          formule:this.getInfo(i.infosOperation,'formule').replace("u00e0","à"),
+          nbreMois:this.getInfo(i.infosOperation,'nbreMois'),
+          montant:this.getInfo(i.infosOperation,'montant'),
+          numAbonne:this.getInfo(i.infosOperation,'numAbo'),
+          })
+    }
+    return b;
+}
+  exportToExcel(): void {
+    let b = this.handleForExcell(this.listOperations)
+    // Here is simple example how to export to excel by https://www.npmjs.com/package/xlsx
+    try {
+      /* generate worksheet */
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(b);
+    
+      /* generate workbook and add the worksheet */
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    
+      /* save to file */
+      XLSX.writeFile(wb, 'rapport du '+new Date().toJSON()+'.xlsx');
+    } catch (err) {
+      console.error('export error', err);
+    }
+  }
    currencyFormat(somme) : String{
      return Number(somme).toLocaleString() ;
    }
    recherche(){
      this.listOperations = []
     this._serviceAdmin.historiqueCanal({date_debut:this.dateDebut,date_fin:this.dateFin}).then(res=>{
-      console.log(JSON.parse(res))
+    //  console.log(JSON.parse(res))
       this.listOperations = JSON.parse(res)
        this.nbrOp = this.listOperations.length;
-       console.log(this.listOperations)
+     //  console.log(this.listOperations)
      })
    }
    ConvertToCSV(objArray) {
@@ -87,7 +130,7 @@ errorMessage:number = 0
           }
         );
       }
-      console.log(liste);
+    //  console.log(liste);
       //console.log(this.ConvertToCSV(liste));
       var csvData = this.ConvertToCSV(liste);
       var a = document.createElement("a");
@@ -98,7 +141,7 @@ errorMessage:number = 0
       a.href = url;
       a.download = 'report_'+(new Date().toLocaleString())+'.csv';/* your file name*/
       a.click();
-      console.log(csvData);
+    //  console.log(csvData);
       this.errorMessage = 2
       return 'success';
     
@@ -117,19 +160,19 @@ errorMessage:number = 0
      this.listOperations = []
      //console.log(JSON.parse(localStorage.getItem("currentuser")))
     this._serviceAdmin.historiqueCanal({date_debut:this.dateDebut,date_fin:this.dateFin}).then(res=>{
-     console.log(JSON.parse(res))
+   //  console.log(JSON.parse(res))
       this.listOperations = JSON.parse(res)
        this.nbrOp = this.listOperations.length;
-       console.log(this.listOperations)
+     //  console.log(this.listOperations)
      
      })
      this._serviceAdmin.getSoldeCanal().then(res=>{
-       console.log(res)
+     //  console.log(res)
        if(res['errorCode'] == 1){
          this.solde = res['solde']
          this.commission = res['commissions']
        }else{
-         console.log(res);
+       //  console.log(res);
        }
      })
    }

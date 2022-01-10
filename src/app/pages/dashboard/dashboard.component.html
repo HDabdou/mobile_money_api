@@ -61,10 +61,24 @@
                 </div>-->
             </div>
         </div>
+         
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card card-stats">
+                  <div  style="text-align: center;">
+                    <button  class=" btn btn-fill btn-success" [disabled]="this.listOperations.length == 0" (click)="exportToExcel()"  >Exportation en excel</button>
+                  </div>
+              </div>
+             <!-- <div class="card-footer">
+                  <div class="stats">
+                      <i class="material-icons text-danger">warning</i>
+                      <a href="javascript:void(0)">Get More Space...</a>
+                  </div>
+              </div>-->
+      </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class=" form-group" style="margin-top: 1.5rem;">
             <div class="col-md-12"  style="text-align: center;">
-              <button  class="btn btn-primary" [disabled]="listOperations.length == 0" (click)="download()"  >Exportation en excel</button>
+              <!--<button  class="btn btn-primary" [disabled]="listOperations.length == 0" (click)="download()"  >Exportation en excel</button>-->
             </div>
           </div>
         </div>
@@ -131,7 +145,7 @@
                   </tr>
                 </thead>
                 <tbody >
-                  <tr class="ligne" *ngFor="let p of listOperations" >
+                  <tr class="ligne" *ngFor="let p of listOperations | paginate: { itemsPerPage: 10, currentPage: p }" >
                     <td>{{p.dateAbo}}</td>
                     <td>{{p.prenom}}</td>
                     <td>{{p.nom}}</td>
@@ -148,6 +162,8 @@
                  
                 </tbody>
               </table>
+              <pagination-controls (pageChange)="p = $event" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>  
+
             </div>
           </div>
       </div>

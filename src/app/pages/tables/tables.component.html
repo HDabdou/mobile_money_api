@@ -1,136 +1,170 @@
 
 <div class=" content">
   <div class=" row">
-    <div class=" col-md-12">
-      <div class=" card">
-        <div class=" card-header">
-          <h4 class=" card-title">Simple Table</h4>
+    <div class=" col-12">
+      <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">NBRE OPERATION</i>
+                      </div>
+                      <p class="card-category"></p>
+                      <h3 class="card-title">{{nbrOp}}
+                          <small>Opérations</small>
+                      </h3>
+                  </div>
+                  <!--<div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons text-danger">warning</i>
+                          <a href="javascript:void(0)">Get More Space...</a>
+                      </div>
+                  </div>-->
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">Votre Solde</i>
+                      </div>
+                      <p class="card-category"></p>
+                      <h3 class="card-title">{{currencyFormat(solde)}}
+                          <small>Fcfa</small>
+                      </h3>
+                  </div>
+                 <!-- <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons text-danger">warning</i>
+                          <a href="javascript:void(0)">Get More Space...</a>
+                      </div>
+                  </div>-->
+              </div>
+          </div>
+          
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">Commissions</i>
+                    </div>
+                    <p class="card-category"></p>
+                    <h3 class="card-title">{{currencyFormat(commission)}}
+                        <small>Fcfa</small>
+                    </h3>
+                </div>
+               <!-- <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons text-danger">warning</i>
+                        <a href="javascript:void(0)">Get More Space...</a>
+                    </div>
+                </div>-->
+            </div>
         </div>
-        <div class=" card-body">
-          <div class=" table-responsive">
-            <table class=" table tablesorter" id="">
-              <thead class=" text-primary">
-                <tr>
-                  <th>Name</th>
-                  <th>Country</th>
-                  <th>City</th>
-                  <th class=" text-center">Salary</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Dakota Rice</td>
-                  <td>Niger</td>
-                  <td>Oud-Turnhout</td>
-                  <td class=" text-center">$36,738</td>
-                </tr>
-                <tr>
-                  <td>Minerva Hooper</td>
-                  <td>CuraÃ§ao</td>
-                  <td>Sinaai-Waas</td>
-                  <td class=" text-center">$23,789</td>
-                </tr>
-                <tr>
-                  <td>Sage Rodriguez</td>
-                  <td>Netherlands</td>
-                  <td>Baileux</td>
-                  <td class=" text-center">$56,142</td>
-                </tr>
-                <tr>
-                  <td>Philip Chaney</td>
-                  <td>Korea, South</td>
-                  <td>Overland Park</td>
-                  <td class=" text-center">$38,735</td>
-                </tr>
-                <tr>
-                  <td>Doris Greene</td>
-                  <td>Malawi</td>
-                  <td>Feldkirchen in KÃ¤rnten</td>
-                  <td class=" text-center">$63,542</td>
-                </tr>
-                <tr>
-                  <td>Mason Porter</td>
-                  <td>Chile</td>
-                  <td>Gloucester</td>
-                  <td class=" text-center">$78,615</td>
-                </tr>
-                <tr>
-                  <td>Jon Porter</td>
-                  <td>Portugal</td>
-                  <td>Gloucester</td>
-                  <td class=" text-center">$98,615</td>
-                </tr>
-              </tbody>
-            </table>
+        
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class=" form-group" style="margin-top: 1.5rem;">
+            <div class="col-md-12"  style="text-align: center;">
+              <!--<button  class="btn btn-primary" [disabled]="listOperations.length == 0" (click)="download()"  >Exportation en excel</button>-->
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class=" col-md-12">
-      <div class=" card card-plain">
-        <div class=" card-header">
-          <h4 class=" card-title">Table on Plain Background</h4>
-          <p class=" category">Here is a subtitle for this table</p>
         </div>
-        <div class=" card-body">
-          <div class=" table-responsive">
-            <table class=" table tablesorter" id="">
-              <thead class=" text-primary">
-                <tr>
-                  <th>Name</th>
-                  <th>Country</th>
-                  <th>City</th>
-                  <th class=" text-center">Salary</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Dakota Rice</td>
-                  <td>Niger</td>
-                  <td>Oud-Turnhout</td>
-                  <td class=" text-center">$36,738</td>
-                </tr>
-                <tr>
-                  <td>Minerva Hooper</td>
-                  <td>CuraÃ§ao</td>
-                  <td>Sinaai-Waas</td>
-                  <td class=" text-center">$23,789</td>
-                </tr>
-                <tr>
-                  <td>Sage Rodriguez</td>
-                  <td>Netherlands</td>
-                  <td>Baileux</td>
-                  <td class=" text-center">$56,142</td>
-                </tr>
-                <tr>
-                  <td>Philip Chaney</td>
-                  <td>Korea, South</td>
-                  <td>Overland Park</td>
-                  <td class=" text-center">$38,735</td>
-                </tr>
-                <tr>
-                  <td>Doris Greene</td>
-                  <td>Malawi</td>
-                  <td>Feldkirchen in KÃ¤rnten</td>
-                  <td class=" text-center">$63,542</td>
-                </tr>
-                <tr>
-                  <td>Mason Porter</td>
-                  <td>Chile</td>
-                  <td>Gloucester</td>
-                  <td class=" text-center">$78,615</td>
-                </tr>
-                <tr>
-                  <td>Jon Porter</td>
-                  <td>Portugal</td>
-                  <td>Gloucester</td>
-                  <td class=" text-center">$98,615</td>
-                </tr>
-              </tbody>
-            </table>
+    <div class=" row">
+
+      <div class=" col-md-12">
+
+        <div class=" card card-plain">
+          <div class=" card-header">
+            
+
           </div>
-        </div>
+          <div class=" card-body">
+            <form style="min-width: 100%;margin-top: -3.5rem;">
+
+                
+              <div class=" row"  style="margin-top: 0rem;margin-bottom: 0rem;">
+                <div class=" col-md-5 ">
+                  <div class=" form-group">
+                    <label style="font-size: 1rem;"> Date debut </label>
+                    <input
+                      class=" form-control"
+                      type="date"
+                      [(ngModel)]="this.dateDebut"
+                      [ngModelOptions]="{standalone: true}"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-5" >
+                  <div class=" form-group">
+                    <label style="font-size: 1rem;"> Date fin </label>
+                    <input
+                      class=" form-control"
+                      type="date"
+                      [(ngModel)]="this.dateFin"
+                      [ngModelOptions]="{standalone: true}"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-2" >
+                  <div class=" form-group" style="margin-top: 1.5rem;">
+                    <div class="col-md-12"  style="text-align: center;">
+                      <button  class=" btn btn-fill btn-success" [disabled]="!dateDebut || !dateFin " (click)="recherche()"  >Valider</button>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+              <div class=" row"  style="margin-top: 0rem;margin-bottom: 0rem;">
+              
+                <div class=" col-md-5" >
+                  <div class=" form-group">
+                    <label style="font-size: 1rem;"> Service </label>
+                    <select
+                      class=" form-control"
+                      type="text"
+                      (change)="onchange($event.target.value)"
+                      [(ngModel)]="this.dateFin"
+                      [ngModelOptions]="{standalone: true}"
+                    >
+                    <option value="tous">Tous les service</option>
+                    <option *ngFor="let i of listeService" value="{{i}}">{{i}}</option>
+                  </select>
+                  </div>
+                </div>
+
+              </div>
+              </form>
+              </div>
+            <div class=" table-responsive">
+              <table class=" table tablesorter" id="">
+                <thead class=" text-primary" style="background-color: #007bff!important;color: white !important;">
+                  <tr style="background-color: #007bff!important;color: white !important;">
+                    <th style="background-color: #007bff!important;color: white !important;" >Date</th>
+                    <th style="background-color: #007bff!important;color: white !important;" >Service</th>
+                    <th style="background-color: #007bff!important;color: white !important;" >operation</th>
+                    <th style="background-color: #007bff!important;color: white !important;" >NUMERO</th>
+                    <th style="background-color: #007bff!important;color: white !important;" >montant</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr class="ligne" *ngFor="let p of listOperations | paginate: { itemsPerPage: 10, currentPage: p }" >
+                    <td>{{p.date_commande}}</td>
+                    <td>{{p.service}}</td>
+                    <td>Acceptation</td>
+                    <td>{{p.numero}}</td>
+                    <td>{{currencyFormat(p.montant)}}</td>
+                  </tr>
+                
+                 
+                </tbody>
+              </table>
+              <pagination-controls (pageChange)="p = $event" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>  
+
+            </div>
+          </div>
       </div>
     </div>
+  </div>
+
   </div>
 </div>
